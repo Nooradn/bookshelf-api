@@ -90,4 +90,6 @@ const addBooks = (req, han) => {
 
 };
 
+console.log(books)
 module.exports = addBooks;
+
