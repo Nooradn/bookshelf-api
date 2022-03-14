@@ -46,8 +46,8 @@ const addBooks = (req, han) => {
     bookshelf.push(newBook);
 
     // Detector
-    const isNoName = bookshelf.filter((book) => book.name === 'undefined');
-    const isPageConflict = bookshelf.filter((book) => book.readPage >= book.pageCount);
+    const isNoName = name === undefined;
+    const isPageConflict = readPage >= pageCount;
     const isSuccess = bookshelf.filter((book) => book.id === id).length > 0;
 
     // Logic handling case from detector
