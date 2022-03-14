@@ -1,5 +1,5 @@
 const { nanoid } = require("nanoid");
-const bookshelf = require("../bookshelf");
+const books = require("../books");
 
 
 // [Mandatory] Add Book With Complete Data
@@ -42,13 +42,13 @@ const addBooks = (req, han) => {
         updatedAt,
     };
 
-    // Add/send the packed value to bookshelf
-    bookshelf.push(newBook);
+    // Add/send the packed value to books
+    books.push(newBook);
 
     // Detector
     const isNoName = name === undefined;
     const isPageConflict = readPage >= pageCount;
-    const isSuccess = bookshelf.filter((book) => book.id === id).length > 0;
+    const isSuccess = books.filter((book) => book.id === id).length > 0;
 
     // Logic handling case from detector
     if (isNoName) {
@@ -73,7 +73,9 @@ const addBooks = (req, han) => {
         const response = han.response({
             status: 'success',
             message: 'Buku berhasil ditambahkan',
-            data: { bookId: id }
+            data: { 
+                bookId: id 
+            }
         });
         response.code(201);
         return response;
