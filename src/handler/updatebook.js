@@ -42,7 +42,7 @@ const updateBook = (req, han) => {
     }
 
     // [Mandatory] Update Book With Complete Data
-    if (id == books[index].id) {
+    if (index !== -1) {
         
         console.log('Data yang dikirim sudah lengkap');
 
@@ -67,8 +67,8 @@ const updateBook = (req, han) => {
         return response;
     };
 
+    
     // [Mandatory] Update Book with Invalid Id
-
     const response = han.response({
         status: 'fail',
         message: "Gagal memperbarui buku. Id tidak ditemukan",
