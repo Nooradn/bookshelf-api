@@ -1,14 +1,3 @@
-const books = [
-    // {
-    //     "name": 'test',
-    //     "year": 'test',
-    //     "author": 'test',
-    //     "summary": 'test',
-    //     "publisher": 'test',
-    //     "pageCount": 'test',
-    //     "readPage": 'test',
-    //     "reading": 'test',
-    // },
-];
+const books = [];
 
 module.exports = books;
