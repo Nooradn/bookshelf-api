@@ -12,6 +12,11 @@ const routes = [
     method: 'POST',
     path: '/books',
     handler: addBooks,
+    options: {
+      cors: {
+        origin: ['*'],
+      },
+    },
   },
   {
     // [Mandatory] Get All Books
