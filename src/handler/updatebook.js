@@ -1,4 +1,4 @@
-const books = require("../books");
+const books = require("../books.js");
 
 const updateBook = (req, han) => {
     console.log('Masuk ke API updateBook');
@@ -18,21 +18,6 @@ const updateBook = (req, han) => {
 
     const updatedAt = new Date().toISOString();
     const index = books.findIndex((b) => b.id == id)
-
-
-    // just for testing
-    console.log('KETERANGAN: ' + 'index ke: ' + index);
-    console.log('KETERANGAN: ' + 'bookId: ' + id);
-    console.log({
-        name,
-        year,
-        author,
-        summary,
-        publisher,
-        pageCount,
-        readPage,
-        reading,
-    })
 
 
     // [Mandatory] Update Book Without Name
@@ -57,10 +42,12 @@ const updateBook = (req, han) => {
     }
 
     // [Mandatory] Update Book With Complete Data
+    if (id == books[index].id) {
+        
+        console.log('Data yang dikirim sudah lengkap');
 
-    // [Mandatory] Update Book with Invalid Id
-    if (index !== -1) {
         books[index] = {
+            ...books[index],
             name,
             year,
             author,
@@ -69,14 +56,26 @@ const updateBook = (req, han) => {
             pageCount,
             readPage,
             reading,
+            updatedAt,
         };
+
         const response = han.response({
             status: 'success',
-            message: 'Buku tidak ditemukan',
+            message: 'Buku berhasil diperbarui',
         });
         response.code(200);
         return response;
     };
+
+    // [Mandatory] Update Book with Invalid Id
+
+    const response = han.response({
+        status: 'fail',
+        message: "Gagal memperbarui buku. Id tidak ditemukan",
+    });
+    response.code(404);
+    return response;
+
 };
 
 module.exports = updateBook;

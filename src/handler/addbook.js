@@ -2,9 +2,6 @@ const { nanoid } = require("nanoid");
 const books = require("../books");
 
 
-// [Mandatory] Add Book With Complete Data
-// [Mandatory] Add Book Without Name
-// [Mandatory] Add Book with Page Read More Than Page Count
 const addBooks = (req, han) => {
     console.log('Masuk ke API addBook');
 
@@ -49,8 +46,9 @@ const addBooks = (req, han) => {
     const isNoName = name === undefined;
     const isPageConflict = readPage >= pageCount;
     const isSuccess = books.filter((book) => book.id === id).length > 0;
-
-    // Logic handling case from detector
+   
+    
+    // [Mandatory] Add Book Without Name
     if (isNoName) {
         const response = han.response({
             status: 'fail',
@@ -60,7 +58,9 @@ const addBooks = (req, han) => {
         response.code(400);
         return response;
     };
-    
+
+
+    // [Mandatory] Add Book with Page Read More Than Page Count
     if (isPageConflict) {
         const response = han.response({
             status: 'fail',
@@ -70,7 +70,9 @@ const addBooks = (req, han) => {
         response.code(400);
         return response;
     };
+    
 
+    // [Mandatory] Add Book With Complete Data
     if (isSuccess) {
         const response = han.response({
             status: 'success',
@@ -83,6 +85,7 @@ const addBooks = (req, han) => {
         return response;
     };
 
+    
     // Another case from logic (generic error)
     const response = han.response({
         status: 'error',
