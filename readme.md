@@ -12,3 +12,6 @@ server => routes => handler => bookshelf
 4. tempat penyimpanan ada di "bookshelf"
 5. selesai. submit now.
 
+# Yg masih error:
+- update-detailed-book
+- delete

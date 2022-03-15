@@ -23,7 +23,7 @@ const addBooks = (req, han) => {
     // Generate value
     const id = nanoid(16);
     const finished = false;
-    const insertedAt = new Date().toISOString;
+    const insertedAt = new Date().toISOString();
     const updatedAt = insertedAt;
 
     // Pack the values
@@ -56,15 +56,17 @@ const addBooks = (req, han) => {
             status: 'fail',
             message: 'Gagal menambahkan buku. Mohon isi nama buku',
         });
+        books.pop();
         response.code(400);
         return response;
     };
-
+    
     if (isPageConflict) {
         const response = han.response({
             status: 'fail',
             message: 'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount'
         });
+        books.pop();
         response.code(400);
         return response;
     };
@@ -73,13 +75,14 @@ const addBooks = (req, han) => {
         const response = han.response({
             status: 'success',
             message: 'Buku berhasil ditambahkan',
-            data: { 
-                bookId: id 
+            data: {
+                bookId: id
             }
         });
         response.code(201);
         return response;
     };
+
     // Another case from logic (generic error)
     const response = han.response({
         status: 'error',
@@ -90,6 +93,5 @@ const addBooks = (req, han) => {
 
 };
 
-console.log(books)
 module.exports = addBooks;
 
