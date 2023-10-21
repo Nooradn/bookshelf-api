@@ -1,6 +1,5 @@
 # Intro
-Bismillah, alhamdulillah.
-Laa haula wa laa quwwata illa billah
+Bookshelf-API BackEnd playground learning.  
 
 # Susunan alur aplikasi
 server => routes => handler => bookshelf
